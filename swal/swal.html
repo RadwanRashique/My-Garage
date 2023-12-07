@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div style="background-color: rgb(41, 174, 174);">
+    <h1 style="color: black;">The test</h1>
+    <button style="background-color: rgb(213, 172, 172);" onclick='handleClick()'>Click me</button>
+    <br>
+    <label for="name">Enter Your Name</label>
+    <br>
+    <input type="text" name="name" id="name">
+  </div>
+
+  <script>
+    function handleClick() {
+      Swal.fire({
+        title: 'Enter Your Name',
+        input: 'text',
+        inputLabel: 'Your Name:',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#d5acac',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const enteredName = result.value;
+          // You can use the enteredName as needed
+          Swal.fire({
+            title: 'Success!',
+            text: `You entered: ${enteredName}`,
+            icon: 'success',
+            confirmButtonColor: '#d5acac',
+          }).then(() => {
+            // Show another confirmation message
+            Swal.fire({
+              title: 'Are you sure?',
+              text: 'Do you want to proceed?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonText: 'Yes',
+              cancelButtonText: 'No',
+              confirmButtonColor: '#d5acac',
+            }).then((confirmation) => {
+              if (confirmation.isConfirmed) {
+                // User confirmed, you can perform additional actions here
+                Swal.fire({
+                  title: 'Confirmed!',
+                  text: 'You confirmed the action.',
+                  icon: 'success',
+                  confirmButtonColor: '#d5acac',
+                });
+              } else {
+                // User canceled the confirmation
+                Swal.fire({
+                  title: 'Cancelled',
+                  text: 'You canceled the action.',
+                  icon: 'info',
+                  confirmButtonColor: '#d5acac',
+                });
+              }
+            });
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
